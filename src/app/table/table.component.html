@@ -13,14 +13,14 @@
   </thead>
   <tbody>
   <tr *ngFor="let country of countries">
-    <td>{{country.country}}</td>
-    <td>{{country.lastUpdate}}</td>
-    <td>{{country.activeCases}}</td>
-    <td>{{country.newCases}}</td>
-    <td>{{country.totalCases}}</td>
-    <td>{{country.newDeaths}}</td>
-    <td>{{country.totalDeaths}}</td>
-    <td>{{country.totalRecovered}}</td>
+    <td>{{country["Country_text"]}}</td>
+    <td>{{country["Last Update"]}}</td>
+    <td>{{country["Active Cases_text"]}}</td>
+    <td>{{country["New Cases_text"]}}</td>
+    <td>{{country["Total Cases_text"]}}</td>
+    <td>{{country["New Deaths_text"]}}</td>
+    <td>{{country["Total Deaths_text"]}}</td>
+    <td>{{country["Total Recovered_text"]}}</td>
   </tr>
   </tbody>
 </table>
