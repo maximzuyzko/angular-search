@@ -1,0 +1,26 @@
+<table class="table">
+  <thead>
+  <tr>
+    <th>Country</th>
+    <th>Last Update</th>
+    <th>Active Cases</th>
+    <th>New Cases</th>
+    <th>Total Cases</th>
+    <th>New Deaths</th>
+    <th>Total Deaths</th>
+    <th>Total Recovered</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let country of countries">
+    <td>{{country.country}}</td>
+    <td>{{country.lastUpdate}}</td>
+    <td>{{country.activeCases}}</td>
+    <td>{{country.newCases}}</td>
+    <td>{{country.totalCases}}</td>
+    <td>{{country.newDeaths}}</td>
+    <td>{{country.totalDeaths}}</td>
+    <td>{{country.totalRecovered}}</td>
+  </tr>
+  </tbody>
+</table>
