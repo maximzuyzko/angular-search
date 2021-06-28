@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 
 
 @Component({
@@ -8,7 +8,7 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
-  searchText!: string;
+  @ViewChild('nameCountryInput', { static: true }) nameCountryInput: ElementRef;
 
   constructor() { }
 
