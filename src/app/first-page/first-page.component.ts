@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {SearchServiceService} from "../search-service.service";
 import {CountryModel} from "../interfaces/country.model";
 
@@ -8,9 +8,6 @@ import {CountryModel} from "../interfaces/country.model";
   styleUrls: ['./first-page.component.css']
 })
 export class FirstPageComponent implements OnInit {
-
-  @ViewChild('nameCountryInput', { static: true }) nameCountryInput: ElementRef;
-
   constructor(public searchServiceService: SearchServiceService) {
   }
 

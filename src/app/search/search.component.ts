@@ -8,7 +8,7 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
-  @ViewChild('nameCountryInput', { static: true }) nameCountryInput: ElementRef;
+  @ViewChild('nameCountryInput', { static: true }) nameCountryInput!: ElementRef;
 
   constructor() { }
 
