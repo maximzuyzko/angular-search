@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Output} from '@angular/core';
 import {SearchServiceService} from "../search-service.service";
 
 @Component({
@@ -7,12 +7,14 @@ import {SearchServiceService} from "../search-service.service";
   styleUrls: ['./first-page.component.css']
 })
 export class FirstPageComponent implements OnInit {
+  @Output() country = {};
 
   constructor(public searchServiceService: SearchServiceService) {
   }
 
   ngOnInit(): void {
-    this.searchServiceService.getCountries('USA');
+    this.searchServiceService.getCountries('world')
+      .subscribe(country => this.country);
   }
 
 }

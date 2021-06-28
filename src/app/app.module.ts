@@ -9,6 +9,7 @@ import { SecondPageComponent } from './second-page/second-page.component';
 import { SearchComponent } from './search/search.component';
 import { TableComponent } from './table/table.component';
 import { SearchServiceService } from "./search-service.service";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { SearchServiceService } from "./search-service.service";
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [SearchServiceService],
   bootstrap: [AppComponent]

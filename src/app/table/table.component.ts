@@ -7,9 +7,10 @@ import { CountryModel } from "../interfaces/country.model";
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit {
-  @Input() searchText!: string;
+  @Input() country: any;
 
   countries: CountryModel[] = [];
+
 
   constructor() { }
 
