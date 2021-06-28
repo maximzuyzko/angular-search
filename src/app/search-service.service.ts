@@ -10,7 +10,7 @@ export class SearchServiceService {
 
   constructor(private http: HttpClient) { }
 
-  getCountries(): Observable<CountryModel[]> {
+  getCountries(query: string): Observable<CountryModel[]> {
     const url = `https://covid-19.dataflowkit.com/v1`;
     return this.http.get<CountryModel[]>(url);
   }

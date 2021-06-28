@@ -8,7 +8,7 @@ import { CountryModel } from "../interfaces/country.model";
 })
 export class TableComponent implements OnInit {
 
-  @Input() countries: CountryModel[] = [];
+  @Input() searchCountries: CountryModel[] = [];
 
 
   constructor() { }

@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {SearchServiceService} from "../search-service.service";
-import {CountryModel} from "../interfaces/country.model";
+import { Component, OnInit } from '@angular/core';
+import { SearchServiceService } from "../search-service.service";
+import { CountryModel } from "../interfaces/country.model";
 
 @Component({
   selector: 'app-first-page',
@@ -12,12 +12,19 @@ export class FirstPageComponent implements OnInit {
   }
 
   countries: CountryModel[] = [];
+  searchingCountries: CountryModel[] = [];
 
   ngOnInit(): void {
-    this.searchServiceService.getCountries()
+    this.searchServiceService.getCountries('')
       .subscribe ((countries) => {
         this.countries = countries;
+        this.searchingCountries = countries;
       });
+  }
+
+  handleSearch(search: any) {
+    this.searchingCountries = this.countries.filter(country => country["Country_text"] === search)
+    console.log(this.searchingCountries)
   }
 }
 
