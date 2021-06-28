@@ -1,5 +1,6 @@
 import {Component, OnInit, Output} from '@angular/core';
 import {SearchServiceService} from "../search-service.service";
+import {CountryModel} from "../interfaces/country.model";
 
 @Component({
   selector: 'app-first-page',
@@ -7,11 +8,11 @@ import {SearchServiceService} from "../search-service.service";
   styleUrls: ['./first-page.component.css']
 })
 export class FirstPageComponent implements OnInit {
-  @Output() country = {};
-  @Output() countries = [];
 
   constructor(public searchServiceService: SearchServiceService) {
   }
+
+  countries: CountryModel[] = [];
 
   ngOnInit(): void {
     this.searchServiceService.getCountries()
