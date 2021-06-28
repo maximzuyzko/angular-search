@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, Output} from '@angular/core';
 import { CountryModel } from "../interfaces/country.model";
 
 @Component({
@@ -9,7 +9,7 @@ import { CountryModel } from "../interfaces/country.model";
 export class TableComponent implements OnInit {
   @Input() country: any;
 
-  countries: CountryModel[] = [];
+  @Input() countries: CountryModel[] = [];
 
 
   constructor() { }

@@ -11,7 +11,7 @@ if (portArg[0]) {
 
 module.exports = {
   "**/v1/**": {
-    target: "https://covid-api.mmediagroup.fr/",
+    target: "https://covid-19.dataflowkit.com/",
     changeOrigin: true,
     secure: false,
     toProxy: true,

@@ -8,14 +8,16 @@ import {SearchServiceService} from "../search-service.service";
 })
 export class FirstPageComponent implements OnInit {
   @Output() country = {};
+  @Output() countries = [];
 
   constructor(public searchServiceService: SearchServiceService) {
   }
 
   ngOnInit(): void {
-    this.searchServiceService.getCountries('world')
-      .subscribe(country => this.country);
+    this.searchServiceService.getCountries()
+      .subscribe ((countries) => {
+        this.countries = countries;
+      });
   }
-
 }
 
