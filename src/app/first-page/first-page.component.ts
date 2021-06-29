@@ -18,12 +18,14 @@ export class FirstPageComponent implements OnInit {
     this.searchServiceService.getCountries('')
       .subscribe ((countries) => {
         this.countries = countries;
-        this.searchingCountries = countries;
+        this.searchingCountries = countries.slice(0, -1);
       });
   }
 
   handleSearch(search: any) {
-    this.searchingCountries = this.countries.filter(country => country["Country_text"] === search)
+    debugger
+    this.searchingCountries = this.countries.filter(country => country["Country_text"].includes(search))
+    debugger
     console.log(this.searchingCountries)
   }
 }
