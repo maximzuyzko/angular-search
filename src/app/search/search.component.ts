@@ -11,12 +11,11 @@ import {debounceTime, distinctUntilChanged, filter, map, pluck} from "rxjs/opera
 export class SearchComponent implements OnInit {
 
   @ViewChild('nameCountryInput', { static: true }) nameCountryInput!: ElementRef;
-  @Output() search: EventEmitter<string> = new EventEmitter<string>();
+  @Output() search: EventEmitter<string | null> = new EventEmitter<string | null>();
 
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.nameCountryInput)
     fromEvent(this.nameCountryInput.nativeElement, 'keyup')
       .pipe(
         debounceTime(500),
@@ -30,4 +29,8 @@ export class SearchComponent implements OnInit {
       });
   }
 
+  reset() {
+    this.search.emit(null)
+    this.nameCountryInput.nativeElement.value = ''
+  }
 }

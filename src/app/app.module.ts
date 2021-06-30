@@ -9,7 +9,9 @@ import { SecondPageComponent } from './second-page/second-page.component';
 import { SearchComponent } from './search/search.component';
 import { TableComponent } from './table/table.component';
 import { SearchServiceService } from "./search-service.service";
-import { HttpClientModule } from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import { LocalStorageService } from "./local-storage.service";
+import {RemakeInterceptor} from "./remake.interceptor";
 
 @NgModule({
   declarations: [
@@ -25,7 +27,15 @@ import { HttpClientModule } from "@angular/common/http";
     FormsModule,
     HttpClientModule
   ],
-  providers: [SearchServiceService],
+  providers: [
+    SearchServiceService,
+    LocalStorageService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RemakeInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

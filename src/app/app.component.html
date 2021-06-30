@@ -1,14 +1,16 @@
-<h1>{{title}}</h1>
+<h1 class="title">{{title}}</h1>
 
-<nav>
-  <ul>
-    <li>
-      <a routerLink="/first-page">First page</a>
-    </li>
-    <li>
-      <a routerLink="/second-page">Second page</a>
-    </li>
-  </ul>
-</nav>
+<div class="container">
+  <nav class="navigation">
+    <ul class="navigation__list">
+      <li class="navigation__item">
+        <a class="navigation__link" routerLink="/first-page">First page</a>
+      </li>
+      <li class="navigation__item">
+        <a class="navigation__link" routerLink="/second-page">Second page</a>
+      </li>
+    </ul>
+  </nav>
+</div>
 
 <router-outlet></router-outlet>
