@@ -22,6 +22,8 @@ export class FirstPageComponent implements OnInit {
         this.countries = countries.slice(0, -1);
 
         const countryName = this.localStorageService.getItem('name');
+        const countryStartDate = this.localStorageService.getItem('startDate');
+        const countryEndDate = this.localStorageService.getItem('endDate');
 
         if (countryName) {
 
@@ -30,7 +32,27 @@ export class FirstPageComponent implements OnInit {
               return country.country.toLowerCase()
                 .includes(countryName.toLowerCase());
             })
+
+        } else if (countryStartDate) {
+
+          this.searchingCountries = this.searchingCountries
+            .filter((country) => {
+              let a = new Date(country.lastUpdate);
+              let b = new Date(countryStartDate);
+              return a.getTime() >=  b.getTime();
+            })
+
+        } else if (countryEndDate) {
+
+          this.searchingCountries = this.searchingCountries
+            .filter((country) => {
+              let a = new Date(country.lastUpdate);
+              let b = new Date(countryEndDate);
+              return a.getTime() <=  b.getTime();
+            })
+
         } else {
+
           this.searchingCountries = this.countries;
         }
 
@@ -73,7 +95,6 @@ export class FirstPageComponent implements OnInit {
       this.searchingCountries = this.countries;
     } else {
       this.localStorageService.setItem('dateEnd', endDate.toLocaleDateString());
-      debugger
       this.searchingCountries = this.countries.filter((country) => {
         let a = new Date(country.lastUpdate);
         let b = new Date(endDate);
