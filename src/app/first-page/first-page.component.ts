@@ -46,8 +46,10 @@ export class FirstPageComponent implements OnInit {
       filteredCountries = filteredCountries
         .filter((country) => {
           let a = new Date(country.lastUpdate);
+          let aUtc = new Date(a.getTime() + a.getTimezoneOffset() * 60000);
           let b = new Date(countryStartDate);
-          return a.getTime() >=  b.getTime();
+          let bUtc = new Date(b.getTime() + b.getTimezoneOffset() * 60000);
+          return aUtc.getTime() >=  bUtc.getTime();
         })
 
     }
@@ -56,8 +58,10 @@ export class FirstPageComponent implements OnInit {
       filteredCountries = filteredCountries
         .filter((country) => {
           let a = new Date(country.lastUpdate);
-          let b = new Date(countryEndDate);
-          return a.getTime() <=  b.getTime();
+          let aUtc = new Date(a.getTime() + a.getTimezoneOffset() * 60000);
+          let b = new Date(countryStartDate);
+          let bUtc = new Date(b.getTime() + b.getTimezoneOffset() * 60000);
+          return aUtc.getTime() <=  bUtc.getTime();
         })
 
     }
@@ -72,48 +76,4 @@ export class FirstPageComponent implements OnInit {
     }
     this.searchingCountries = this.applyFilters();
   }
-
-  /*handleSearch(search: string | null) {
-
-    if (search === null) {
-      this.localStorageService.removeItem('name');
-      this.searchingCountries = this.countries;
-    } else {
-      this.localStorageService.setItem('name', search);
-
-      this.searchingCountries = this.searchingCountries.filter((country) => {
-        return country.country.toLowerCase().includes(search.toLowerCase());
-      });
-    }
-  }
-
-  dateStartInput(startDate: Date | null) {
-
-    if (startDate === null) {
-      this.localStorageService.removeItem('dateStart')
-      this.searchingCountries = this.countries;
-    } else {
-      this.localStorageService.setItem('dateStart', startDate.toLocaleDateString());
-      this.searchingCountries = this.searchingCountries.filter((country) => {
-        let a = new Date(country.lastUpdate);
-        let b = new Date(startDate);
-        return a.getTime() >=  b.getTime();
-      });
-    }
-  }
-
-  dateEndInput(endDate: Date | null) {
-
-    if (endDate === null) {
-      this.localStorageService.removeItem('dateEnd')
-      this.searchingCountries = this.countries;
-    } else {
-      this.localStorageService.setItem('dateEnd', endDate.toLocaleDateString());
-      this.searchingCountries = this.searchingCountries.filter((country) => {
-        let a = new Date(country.lastUpdate);
-        let b = new Date(endDate);
-        return a.getTime() <=  b.getTime();
-      });
-    }
-  }*/
 }

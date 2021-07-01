@@ -4,8 +4,8 @@
     <button class="search__btn search__btn-clear" (click)="resetName()">Reset name filter</button>
   </div>
   <div class="search__date">
-    <input class="search__input" type="date" placeholder="Date" [(ngModel)]="dateStartInput">
-    <input class="search__input" type="date" placeholder="Date" (change)="dateEndInput($event)">
+    <input class="search__input" type="date" placeholder="Date" [(ngModel)]="dateStartInput" (ngModelChange)="dateStartInputChange()">
+    <input class="search__input" type="date" placeholder="Date" [(ngModel)]="dateEndInput" (ngModelChange)="dateEndInputChange()">
     <button class="search__btn search__btn-clear" (click)="resetStartDate()">Reset start date</button>
     <button class="search__btn search__btn-clear" (click)="resetEndDate()">Reset end date</button>
     <button class="search__btn search__btn-clear" (click)="resetAll()">Reset all filters</button>

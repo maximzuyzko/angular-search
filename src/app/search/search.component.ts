@@ -11,13 +11,12 @@ import {debounceTime, distinctUntilChanged, filter, map, pluck} from "rxjs/opera
 export class SearchComponent implements OnInit {
 
   @ViewChild('nameCountryInput', { static: true }) nameCountryInput!: ElementRef;
-  //@ViewChild('dateStartInput', { static: true }) dateStartInput!: ElementRef;
   @Output() search: EventEmitter<string | null> = new EventEmitter<string | null>();
   @Output() startDate: EventEmitter<string | null> = new EventEmitter<string | null>();
   @Output() endDate: EventEmitter<string | null> = new EventEmitter<string | null>();
 
   dateStartInput: string;
-
+  dateEndInput: string;
 
   constructor() { }
 
@@ -35,14 +34,13 @@ export class SearchComponent implements OnInit {
       });
   }
 
-  /*dateStartInput(value: Event) {
-    const target = value.target as HTMLInputElement;
-    this.startDate.emit(target.value);
-  }*/
+  dateStartInputChange() {
+    this.startDate.emit();
+  }
 
-  dateEndInput(value: Event) {
-    const target = value.target as HTMLInputElement;
-    this.endDate.emit(target.value);
+  dateEndInputChange() {
+    this.endDate.emit();
+
   }
 
   resetName() {
@@ -52,18 +50,22 @@ export class SearchComponent implements OnInit {
 
   resetStartDate() {
     this.startDate.emit(null);
+    this.dateStartInput = '';
   }
 
   resetEndDate() {
     this.endDate.emit(null);
+    this.dateEndInput = '';
   }
 
 
 
   resetAll() {
     this.search.emit(null);
-    this.nameCountryInput.nativeElement.value = '';
     this.startDate.emit(null);
     this.endDate.emit(null);
+    this.nameCountryInput.nativeElement.value = '';
+    this.dateStartInput = '';
+    this.dateEndInput = '';
   }
 }

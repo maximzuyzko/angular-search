@@ -33,3 +33,9 @@
   opacity: 1;
   background: linear-gradient(#668cff, #4d79ff) #668cff;
 }
+
+@media (max-width: 950px) {
+  .search__input, .search__btn {
+    margin-bottom: 15px;
+  }
+}
