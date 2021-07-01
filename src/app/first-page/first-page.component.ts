@@ -33,16 +33,19 @@ export class FirstPageComponent implements OnInit {
                 .includes(countryName.toLowerCase());
             })
 
-        } else if (countryStartDate) {
+        }
+        if (countryStartDate) {
 
           this.searchingCountries = this.searchingCountries
             .filter((country) => {
+              debugger
               let a = new Date(country.lastUpdate);
               let b = new Date(countryStartDate);
               return a.getTime() >=  b.getTime();
             })
 
-        } else if (countryEndDate) {
+        }
+        if (countryEndDate) {
 
           this.searchingCountries = this.searchingCountries
             .filter((country) => {
