@@ -15,8 +15,8 @@ export class SearchComponent implements OnInit {
   @Output() startDate: EventEmitter<string | null> = new EventEmitter<string | null>();
   @Output() endDate: EventEmitter<string | null> = new EventEmitter<string | null>();
 
-  dateStartInput: string;
-  dateEndInput: string;
+  dateStartInput: string = '';
+  dateEndInput: string = '';
 
   constructor() { }
 
@@ -34,13 +34,12 @@ export class SearchComponent implements OnInit {
       });
   }
 
-  dateStartInputChange() {
-    this.startDate.emit();
+  dateStartInputChange(dateStartInput: string | null) {
+    this.startDate.emit(dateStartInput);
   }
 
-  dateEndInputChange() {
-    this.endDate.emit();
-
+  dateEndInputChange(dateEndInput: string | null) {
+    this.endDate.emit(dateEndInput);
   }
 
   resetName() {
@@ -57,8 +56,6 @@ export class SearchComponent implements OnInit {
     this.endDate.emit(null);
     this.dateEndInput = '';
   }
-
-
 
   resetAll() {
     this.search.emit(null);

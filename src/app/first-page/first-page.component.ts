@@ -20,8 +20,8 @@ export class FirstPageComponent implements OnInit {
     this.searchServiceService.getCountries('')
       .subscribe ((countries) => {
         this.countries = countries.slice(0, -1);
-        this.searchingCountries = this.countries;
-        this.applyFilters();
+        this.searchingCountries = this.applyFilters();
+
       });
   }
 
@@ -46,10 +46,9 @@ export class FirstPageComponent implements OnInit {
       filteredCountries = filteredCountries
         .filter((country) => {
           let a = new Date(country.lastUpdate);
-          let aUtc = new Date(a.getTime() + a.getTimezoneOffset() * 60000);
           let b = new Date(countryStartDate);
           let bUtc = new Date(b.getTime() + b.getTimezoneOffset() * 60000);
-          return aUtc.getTime() >=  bUtc.getTime();
+          return a.getTime() >=  bUtc.getTime();
         })
 
     }
@@ -58,10 +57,9 @@ export class FirstPageComponent implements OnInit {
       filteredCountries = filteredCountries
         .filter((country) => {
           let a = new Date(country.lastUpdate);
-          let aUtc = new Date(a.getTime() + a.getTimezoneOffset() * 60000);
-          let b = new Date(countryStartDate);
-          let bUtc = new Date(b.getTime() + b.getTimezoneOffset() * 60000);
-          return aUtc.getTime() <=  bUtc.getTime();
+          let b = new Date(countryEndDate);
+          let bUtc = new Date(b.getTime() - (5 * (b.getTimezoneOffset() * 60000))-1);
+          return a.getTime() <=  bUtc.getTime();
         })
 
     }
