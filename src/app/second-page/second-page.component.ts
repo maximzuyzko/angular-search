@@ -26,9 +26,9 @@ export class SecondPageComponent implements OnInit {
   }
 
   applyFilters () {
-    const countryName = this.localStorageService.getItem('name');
-    const countryStartDate = this.localStorageService.getItem('dateStart');
-    const countryEndDate = this.localStorageService.getItem('dateEnd');
+    const countryName = this.localStorageService.getItem('name2');
+    const countryStartDate = this.localStorageService.getItem('dateStart2');
+    const countryEndDate = this.localStorageService.getItem('dateEnd2');
 
 
     let filteredCountries = this.countries;
@@ -41,27 +41,27 @@ export class SecondPageComponent implements OnInit {
         })
 
     }
+
     if (countryStartDate) {
 
       filteredCountries = filteredCountries
         .filter((country) => {
           let a = new Date(country.lastUpdate);
-          let aUtc = new Date(a.getTime() - a.getTimezoneOffset() * 60000);
           let b = new Date(countryStartDate);
           let bUtc = new Date(b.getTime() + b.getTimezoneOffset() * 60000);
-          return aUtc.getTime() >=  bUtc.getTime();
+          return a.getTime() >=  bUtc.getTime();
         })
 
     }
+
     if (countryEndDate) {
 
       filteredCountries = filteredCountries
         .filter((country) => {
           let a = new Date(country.lastUpdate);
-          let aUtc = new Date(a.getTime() - a.getTimezoneOffset() * 60000);
           let b = new Date(countryEndDate);
-          let bUtc = new Date(b.getTime() + b.getTimezoneOffset() * 60000);
-          return aUtc.getTime() <=  bUtc.getTime();
+          let bUtc = new Date(b.getTime() - (5 * (b.getTimezoneOffset() * 60000))-1);
+          return a.getTime() <=  bUtc.getTime();
         })
 
     }

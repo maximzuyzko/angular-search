@@ -26,9 +26,9 @@ export class FirstPageComponent implements OnInit {
   }
 
   applyFilters () {
-    const countryName = this.localStorageService.getItem('name');
-    const countryStartDate = this.localStorageService.getItem('dateStart');
-    const countryEndDate = this.localStorageService.getItem('dateEnd');
+    const countryName = this.localStorageService.getItem('name1');
+    const countryStartDate = this.localStorageService.getItem('dateStart1');
+    const countryEndDate = this.localStorageService.getItem('dateEnd1');
 
 
     let filteredCountries = this.countries;
@@ -41,6 +41,7 @@ export class FirstPageComponent implements OnInit {
         })
 
     }
+
     if (countryStartDate) {
 
       filteredCountries = filteredCountries
@@ -52,6 +53,7 @@ export class FirstPageComponent implements OnInit {
         })
 
     }
+
     if (countryEndDate) {
 
       filteredCountries = filteredCountries
