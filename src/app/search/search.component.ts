@@ -11,7 +11,9 @@ import {debounceTime, distinctUntilChanged, filter, map, pluck} from "rxjs/opera
 export class SearchComponent implements OnInit {
 
   @ViewChild('nameCountryInput', { static: true }) nameCountryInput!: ElementRef;
+  //@ViewChild('dateStartInput', { static: true }) dateStartInput!: ElementRef;
   @Output() search: EventEmitter<string | null> = new EventEmitter<string | null>();
+  @Output() startDate: EventEmitter<Date> = new EventEmitter<Date>();
 
   constructor() { }
 
@@ -27,6 +29,11 @@ export class SearchComponent implements OnInit {
       .subscribe(value => {
         this.search.emit(value);
       });
+  }
+
+  dateStartInput(value: any) {
+    this.startDate.emit( new Date(value));
+    console.log(this.startDate)
   }
 
   reset() {

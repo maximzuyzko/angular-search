@@ -7,8 +7,6 @@ export class LocalStorageService {
 
   constructor() { }
   setItem(key: string, value: string) {
-    key = 'name';
-    debugger
     localStorage.setItem(key, value);
   }
   getItem(key: string) {

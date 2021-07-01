@@ -19,10 +19,7 @@ export class FirstPageComponent implements OnInit {
   ngOnInit(): void {
     this.searchServiceService.getCountries('')
       .subscribe ((countries) => {
-        debugger
         this.countries = countries.slice(0, -1);
-
-
 
         const countryName = this.localStorageService.getItem('name');
 
@@ -43,17 +40,28 @@ export class FirstPageComponent implements OnInit {
   handleSearch(search: string | null) {
 
     if (search === null) {
-      this.localStorageService.clear()
+      this.localStorageService.removeItem('name')
       this.searchingCountries = this.countries;
-    }
-
-    else {
-      this.localStorageService.setItem(search, search);
+    } else {
+      this.localStorageService.setItem('name', search);
 
       this.searchingCountries = this.countries.filter((country) => {
         return country.country.toLowerCase().includes(search.toLowerCase());
       });
     }
   }
-}
 
+  dateStartInput(change: Date | null) {
+
+    if (change === null) {
+      this.localStorageService.removeItem('date')
+      this.searchingCountries = this.countries;
+    } else {
+      this.localStorageService.setItem('date', change.toLocaleDateString());
+
+      this.searchingCountries = this.countries.filter((country) => {
+        return country.lastUpdate >= change.toLocaleDateString();
+    });
+  }
+}
+}

@@ -28,18 +28,9 @@ export class RemakeInterceptor implements HttpInterceptor {
             console.log(typeof event.body)
 
             let body = [] as any[];
-            debugger
-            /*"Active Cases_text":string,
-              "Country_text":string,
-              "Last Update":string,
-              "New Cases_text":string,
-              "New Deaths_text":string,
-              "Total Cases_text":string,
-              "Total Deaths_text":string,
-              "Total Recovered_text":string
 
-
-              countryClone = {
+            event.body.map((country: any) => {
+              return body.push( {
                 activeCases: country["Active Cases_text"],
                 country: country["Country_text"],
                 lastUpdate: country["Last Update"],
@@ -48,31 +39,27 @@ export class RemakeInterceptor implements HttpInterceptor {
                 totalCases: country["Total Cases_text"],
                 totalDeaths: country["Total Deaths_text"],
                 totalRecovered: country["Total Recovered_text"],
-              };
-              */
-            // body.push(activeCases) =
-            event.body.map((country: any) => {
-              //debugger
-              let countryClone = {
-                countryClone.activeCases = country["Active Cases_text"];
-                countryClone.country = country["Country_text"];
-                countryClone.lastUpdate = country["Last Update"];
-                countryClone.newCases = country["New Cases_text"];
-                countryClone.newDeaths = country["New Deaths_text"];
-                countryClone.totalCases = country["Total Cases_text"];
-                countryClone.totalDeaths = country["Total Deaths_text"];
-                countryClone.totalRecovered = country["Total Recovered_text"];
-              };
+              })
 
-              return countryClone;
             });
+
+            function getRandomDate (currentDate: string) {
+              let minDate = Date.parse(currentDate) - (604800*1000);
+              let maxDate = Date.parse(currentDate);
+              return new Date(Math.floor(Math.random() * (maxDate - minDate + 1)) + minDate);
+            }
+
+
+            body.forEach((country) => {
+              country.lastUpdate = getRandomDate(country.lastUpdate).toLocaleDateString();
+              }
+            )
+            console.log(body)
 
             const cloneEvent = event.clone({
               body
             });
 
-
-            debugger
             return cloneEvent;
           }
 

@@ -53,3 +53,9 @@
 .table__body td {
   border-top: 1px solid #e6e6e6;
 }
+
+@media (max-width: 500px) {
+  .table__body td:first-child, .table__body td:nth-child(2) {
+    padding: 0;
+  }
+}
