@@ -1,4 +1,4 @@
 <div class="container">
-  <app-search (search)="handleSearch($event)" (startDate)="dateStartInput($event)" (endDate)="dateEndInput($event)"></app-search>
+  <app-search (search)="setFilter('name', $event)" (startDate)="setFilter('dateStart', $event)" (endDate)="setFilter('dateEnd', $event)"></app-search>
   <app-table [searchingCountries]="searchingCountries"></app-table>
 </div>

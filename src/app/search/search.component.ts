@@ -13,8 +13,11 @@ export class SearchComponent implements OnInit {
   @ViewChild('nameCountryInput', { static: true }) nameCountryInput!: ElementRef;
   //@ViewChild('dateStartInput', { static: true }) dateStartInput!: ElementRef;
   @Output() search: EventEmitter<string | null> = new EventEmitter<string | null>();
-  @Output() startDate: EventEmitter<Date> = new EventEmitter<Date>();
-  @Output() endDate: EventEmitter<Date> = new EventEmitter<Date>();
+  @Output() startDate: EventEmitter<string | null> = new EventEmitter<string | null>();
+  @Output() endDate: EventEmitter<string | null> = new EventEmitter<string | null>();
+
+  dateStartInput: string;
+
 
   constructor() { }
 
@@ -32,14 +35,14 @@ export class SearchComponent implements OnInit {
       });
   }
 
-  dateStartInput(value: Event) {
+  /*dateStartInput(value: Event) {
     const target = value.target as HTMLInputElement;
-    this.startDate.emit(new Date(target.value));
-  }
+    this.startDate.emit(target.value);
+  }*/
 
   dateEndInput(value: Event) {
     const target = value.target as HTMLInputElement;
-    this.endDate.emit(new Date(target.value));
+    this.endDate.emit(target.value);
   }
 
   resetName() {
@@ -54,6 +57,8 @@ export class SearchComponent implements OnInit {
   resetEndDate() {
     this.endDate.emit(null);
   }
+
+
 
   resetAll() {
     this.search.emit(null);
