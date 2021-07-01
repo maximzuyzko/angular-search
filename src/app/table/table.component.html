@@ -15,7 +15,7 @@
     <tbody class="table__body">
       <tr *ngFor="let country of searchingCountries">
         <td>{{country.country}}</td>
-        <td>{{country.lastUpdate}}</td>
+        <td>{{country.lastUpdate.toLocaleString()}}</td>
         <td>{{country.activeCases}}</td>
         <td>{{country.newCases}}</td>
         <td>{{country.totalCases}}</td>

@@ -51,17 +51,34 @@ export class FirstPageComponent implements OnInit {
     }
   }
 
-  dateStartInput(change: Date | null) {
+  dateStartInput(startDate: Date | null) {
 
-    if (change === null) {
-      this.localStorageService.removeItem('date')
+    if (startDate === null) {
+      this.localStorageService.removeItem('dateStart')
       this.searchingCountries = this.countries;
     } else {
-      this.localStorageService.setItem('date', change.toLocaleDateString());
-
+      this.localStorageService.setItem('dateStart', startDate.toLocaleDateString());
       this.searchingCountries = this.countries.filter((country) => {
-        return country.lastUpdate >= change.toLocaleDateString();
-    });
+        let a = new Date(country.lastUpdate);
+        let b = new Date(startDate);
+        return a.getTime() >=  b.getTime();
+      });
+    }
   }
-}
+
+  dateEndInput(endDate: Date | null) {
+
+    if (endDate === null) {
+      this.localStorageService.removeItem('dateEnd')
+      this.searchingCountries = this.countries;
+    } else {
+      this.localStorageService.setItem('dateEnd', endDate.toLocaleDateString());
+      debugger
+      this.searchingCountries = this.countries.filter((country) => {
+        let a = new Date(country.lastUpdate);
+        let b = new Date(endDate);
+        return a.getTime() <=  b.getTime();
+      });
+    }
+  }
 }

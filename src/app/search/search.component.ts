@@ -14,6 +14,7 @@ export class SearchComponent implements OnInit {
   //@ViewChild('dateStartInput', { static: true }) dateStartInput!: ElementRef;
   @Output() search: EventEmitter<string | null> = new EventEmitter<string | null>();
   @Output() startDate: EventEmitter<Date> = new EventEmitter<Date>();
+  @Output() endDate: EventEmitter<Date> = new EventEmitter<Date>();
 
   constructor() { }
 
@@ -31,13 +32,33 @@ export class SearchComponent implements OnInit {
       });
   }
 
-  dateStartInput(value: any) {
-    this.startDate.emit( new Date(value));
-    console.log(this.startDate)
+  dateStartInput(value: Event) {
+    const target = value.target as HTMLInputElement;
+    this.startDate.emit(new Date(target.value));
   }
 
-  reset() {
-    this.search.emit(null)
-    this.nameCountryInput.nativeElement.value = ''
+  dateEndInput(value: Event) {
+    const target = value.target as HTMLInputElement;
+    this.endDate.emit(new Date(target.value));
+  }
+
+  resetName() {
+    this.search.emit(null);
+    this.nameCountryInput.nativeElement.value = '';
+  }
+
+  resetStartDate() {
+    this.startDate.emit(null);
+  }
+
+  resetEndDate() {
+    this.endDate.emit(null);
+  }
+
+  resetAll() {
+    this.search.emit(null);
+    this.nameCountryInput.nativeElement.value = '';
+    this.startDate.emit(null);
+    this.endDate.emit(null);
   }
 }

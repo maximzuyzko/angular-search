@@ -25,15 +25,20 @@ export class RemakeInterceptor implements HttpInterceptor {
       map(
         (event) => {
           if (event instanceof HttpResponse){
-            console.log(typeof event.body)
 
             let body = [] as any[];
+
+            function getRandomDate (currentDate: string) {
+              let minDate = Date.parse(currentDate) - (604800*1000);
+              let maxDate = Date.parse(currentDate);
+              return new Date(Math.floor(Math.random() * (maxDate - minDate + 1)) + minDate);
+            }
 
             event.body.map((country: any) => {
               return body.push( {
                 activeCases: country["Active Cases_text"],
                 country: country["Country_text"],
-                lastUpdate: country["Last Update"],
+                lastUpdate: getRandomDate(country["Last Update"]),
                 newCases: country["New Cases_text"],
                 newDeaths: country["New Deaths_text"],
                 totalCases: country["Total Cases_text"],
@@ -43,18 +48,6 @@ export class RemakeInterceptor implements HttpInterceptor {
 
             });
 
-            function getRandomDate (currentDate: string) {
-              let minDate = Date.parse(currentDate) - (604800*1000);
-              let maxDate = Date.parse(currentDate);
-              return new Date(Math.floor(Math.random() * (maxDate - minDate + 1)) + minDate);
-            }
-
-
-            body.forEach((country) => {
-              country.lastUpdate = getRandomDate(country.lastUpdate).toLocaleDateString();
-              }
-            )
-            console.log(body)
 
             const cloneEvent = event.clone({
               body

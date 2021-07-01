@@ -1,12 +1,13 @@
 <div class="container">
   <div class="search__name">
     <input class="search__input" type="text" placeholder="Search" #nameCountryInput>
-    <button class="search__btn">Search</button>
-    <button class="search__btn search__btn-clear" (click)="reset()">Clear</button>
+    <button class="search__btn search__btn-clear" (click)="resetName()">Reset name filter</button>
   </div>
   <div class="search__date">
     <input class="search__input" type="date" placeholder="Date" (change)="dateStartInput($event)">
-    <button class="search__btn">Search</button>
-    <button class="search__btn search__btn-clear" (click)="reset()">Clear</button>
+    <input class="search__input" type="date" placeholder="Date" (change)="dateEndInput($event)">
+    <button class="search__btn search__btn-clear" (click)="resetStartDate()">Reset start date</button>
+    <button class="search__btn search__btn-clear" (click)="resetEndDate()">Reset end date</button>
+    <button class="search__btn search__btn-clear" (click)="resetAll()">Reset all filters</button>
   </div>
 </div>

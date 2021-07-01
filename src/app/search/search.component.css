@@ -1,6 +1,7 @@
 .search__name, .search__date {
   margin-bottom: 30px;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
 }
 
